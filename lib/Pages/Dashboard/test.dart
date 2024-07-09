@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:starbuck_clone/Object/drink.dart';
-import 'package:starbuck_clone/Pages/ThongTinDoUong.dart';
+import 'package:starbuck_clone/Pages/Dashboard/ThongTinDoUong.dart';
 
 class Test extends StatefulWidget {
   const Test({super.key});

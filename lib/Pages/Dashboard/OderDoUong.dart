@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:starbuck_clone/Object/drink.dart';
-import 'package:starbuck_clone/Pages/ChiTietDoUong.dart';
-import 'package:starbuck_clone/Pages/ThongTinDoUong.dart';
+import 'package:starbuck_clone/Pages/Dashboard/ChiTietDoUong.dart';
+import 'package:starbuck_clone/Pages/Dashboard/ThongTinDoUong.dart';
 
 class Oderdouong extends StatefulWidget {
   const Oderdouong({super.key});

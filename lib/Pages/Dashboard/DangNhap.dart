@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:starbuck_clone/Pages/TrangChu.dart';
+import 'package:starbuck_clone/Pages/Dashboard/TrangChu.dart';
 
 void main() {
   runApp(DangNhap());

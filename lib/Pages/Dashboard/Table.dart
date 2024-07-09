@@ -1,22 +1,32 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:starbuck_clone/Object/drink.dart';
-import 'package:starbuck_clone/Pages/OderDoUong.dart';
+import 'package:starbuck_clone/Pages/Dashboard/OderDoUong.dart';
 
-class TrangChu extends StatefulWidget {
-  const TrangChu({super.key});
+class TableList extends StatelessWidget {
+  const TableList({super.key});
 
-  @override
-  State<TrangChu> createState() => _TrangChuState();
-}
-
-class _TrangChuState extends State<TrangChu> {
-  List<drink> listDrink = [];
   @override
   Widget build(BuildContext context) {
+    List<drink> listDrink = [];
+
+    statusColor(status) {
+      switch (status) {
+        case 'Trống':
+          return Colors.grey;
+          break;
+        case "Đang sử dụng":
+          return Colors.green;
+          break;
+        case "Đã đặt":
+          return Colors.orange;
+          break;
+      }
+    }
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "DANH MỤC BÀN",
           style: TextStyle(
               color: Colors.black, fontWeight: FontWeight.w700, fontSize: 20),
@@ -78,52 +88,6 @@ class _TrangChuState extends State<TrangChu> {
           );
         },
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.green,
-        unselectedItemColor: Colors.black,
-        selectedItemColor: Colors.white,
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.star), label: "Trang chủ"),
-          BottomNavigationBarItem(icon: Icon(Icons.list_alt), label: "Lịch sử"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.format_list_bulleted_outlined), label: "Cá nhân")
-        ],
-      ),
     );
   }
-
-  statusColor(status) {
-    switch (status) {
-      case 'Trống':
-        return Colors.grey;
-        break;
-      case "Đang sử dụng":
-        return Colors.green;
-        break;
-      case "Đã đặt":
-        return Colors.orange;
-        break;
-    }
-  }
-}
-
-void ShowDialog() {
-  AlertDialog(
-    title: Text(
-      "Lựa chọn",
-      style: TextStyle(
-          color: Colors.black, fontWeight: FontWeight.w700, fontSize: 17),
-    ),
-    actions: [
-      ElevatedButton(
-        onPressed: () {},
-        child: Text(
-          "Đặt trước",
-          style: TextStyle(
-              color: Colors.white, fontWeight: FontWeight.w700, fontSize: 15),
-        ),
-        style: ButtonStyle(),
-      )
-    ],
-  );
 }

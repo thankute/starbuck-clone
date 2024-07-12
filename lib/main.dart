@@ -27,7 +27,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: MultiProvider(
           providers: [ChangeNotifierProvider(create: (context) => user())],
-          child: Wrapper()),
+          child: const MaterialApp(
+            debugShowCheckedModeBanner: false,
+            home: Wrapper(),
+          )),
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.white,

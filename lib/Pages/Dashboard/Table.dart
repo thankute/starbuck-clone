@@ -32,6 +32,7 @@ class TableList extends StatelessWidget {
               color: Colors.black, fontWeight: FontWeight.w700, fontSize: 20),
         ),
         centerTitle: true,
+        automaticallyImplyLeading: false,
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:starbuck_clone/Object/user.dart';
+import 'package:starbuck_clone/Pages/setting/changePassword.dart';
 
 class Setting extends StatelessWidget {
   const Setting({super.key});
@@ -31,7 +32,10 @@ class Setting extends StatelessWidget {
           Expanded(
             child: Container(
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(20.0),
+                    topRight: Radius.circular(20.0),
+                  ),
                   color: Colors.grey[200]),
               width: double.infinity,
               child: Padding(
@@ -52,19 +56,27 @@ class Setting extends StatelessWidget {
                       ),
                       child: Column(
                         children: [
-                          Container(
-                            padding: EdgeInsets.all(12),
-                            width: double.infinity,
-                            child: const Row(
-                              children: [
-                                Icon(Icons.settings),
-                                Padding(
-                                  padding: EdgeInsets.only(left: 8.0),
-                                  child: Text("Đổi mật khẩu"),
+                          GestureDetector(
+                              onTap: () => {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const ChangePassword())),
+                                  },
+                              child: Container(
+                                padding: EdgeInsets.all(12),
+                                width: double.infinity,
+                                child: const Row(
+                                  children: [
+                                    Icon(Icons.settings),
+                                    Padding(
+                                      padding: EdgeInsets.only(left: 8.0),
+                                      child: Text("Đổi mật khẩu"),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
-                          ),
+                              )),
                           GestureDetector(
                             onTap: () => {
                               Provider.of<user>(context, listen: false)

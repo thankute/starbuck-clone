@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:starbuck_clone/Object/user.dart';
 import 'package:starbuck_clone/Pages/Dashboard/TrangChu.dart';
 
 void main() {
@@ -23,8 +25,8 @@ class _DangNhap extends State<DangNhap> {
 
     if (document.docs.isNotEmpty) {
       print("Done");
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => TrangChu()));
+      Provider.of<user>(context, listen: false)
+          .setUsername(document.docs[0]['sUsername']);
     } else {
       print("Tài khoản không tồn tại");
     }

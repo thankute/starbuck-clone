@@ -73,7 +73,7 @@ class History extends StatelessWidget {
                               MaterialPageRoute(
                                 builder: (context) => const DetailHistory(),
                                 settings: RouteSettings(
-                                  arguments: documentSnapshot.data(),
+                                  arguments: documentSnapshot,
                                 ),
                               ),
                             );

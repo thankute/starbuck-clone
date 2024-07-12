@@ -1,8 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:starbuck_clone/Pages/Dashboard/DangNhap.dart';
-import 'package:starbuck_clone/Pages/Dashboard/TrangChu.dart';
-import 'package:starbuck_clone/firebase_options.dart';
+import 'package:provider/provider.dart';
+import 'package:starbuck_clone/Object/user.dart';
+import 'package:starbuck_clone/Pages/Wrapper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +25,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: TrangChu(),
+      home: MultiProvider(
+          providers: [ChangeNotifierProvider(create: (context) => user())],
+          child: Wrapper()),
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.white,

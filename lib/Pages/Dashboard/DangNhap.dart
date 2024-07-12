@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -17,24 +19,40 @@ class _DangNhap extends State<DangNhap> {
   TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
-  Future<void> checkAcc(String name) async {
-    QuerySnapshot document = await firestore
-        .collection("User")
-        .where("sUsername", isEqualTo: name)
-        .get();
-
-    if (document.docs.isNotEmpty) {
-      print("Done");
-      Provider.of<user>(context, listen: false)
-          .setUsername(document.docs[0]['sUsername']);
-    } else {
-      print("Tài khoản không tồn tại");
-    }
-  }
 
   final formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    void showSnackBar(BuildContext context, String message) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(message),
+        ),
+      );
+    }
+
+    Future<void> checkAcc(String name) async {
+      try {
+        QuerySnapshot document = await firestore
+            .collection("User")
+            .where("sUsername", isEqualTo: name)
+            .get();
+
+        if (document.docs.isNotEmpty) {
+          if (document.docs[0]['sPassword'] == password.text) {
+            Provider.of<user>(context, listen: false)
+                .setUsername(document.docs[0]['sUsername']);
+          } else {
+            showSnackBar(context, "Mật khẩu không chính xác! Vui lòng thử lại");
+          }
+        } else {
+          showSnackBar(context, "Tài khoản không tồn tại");
+        }
+      } catch (e) {
+        log("loi $e");
+      }
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(),
